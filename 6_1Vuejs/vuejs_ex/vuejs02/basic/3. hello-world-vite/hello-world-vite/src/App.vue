@@ -1,15 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  <div id="date">
+    {{ date }}
+  </div>
+  <div id="date2">
+    {{ date2 }}
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld,
+  setup() {
+    const date = Date().toString();
+    return {
+      date,
+    };
   },
-}
+
+  data() {
+    return {
+      data2: Date().toString(),
+    };
+  },
+};
 </script>
