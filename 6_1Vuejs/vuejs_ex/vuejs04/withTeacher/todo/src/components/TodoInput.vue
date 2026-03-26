@@ -13,10 +13,11 @@ export default {
       inputMsg: '', //입력 todo 데이터 정의
     };
   },
-
+  emits: ['addTodo'],
   methods: {
     addTodo() {
-      console.log(this.inputMsg); //할일 출력
+      //console.log(this.inputMsg); //할일 출력
+      this.$emit('addTodo', this.inputMsg); //부모 컴포넌트 이벤트 호출
       this.inputMsg = ''; //입력 데이터 초기화 왜? 문자열이라서 계속 추가되니까...
     },
   },
