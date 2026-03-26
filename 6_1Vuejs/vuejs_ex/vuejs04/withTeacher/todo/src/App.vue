@@ -50,6 +50,15 @@ export default {
     updateTab(tab) {
       this.current = tab;
     },
+    computed: {
+      coumputedTodo() {
+        if (this.current === 'all') {
+          return this.todo;
+        } else {
+          return this.todo.filter((v) => v.completed);
+        }
+      },
+    },
   },
 };
 </script>
@@ -58,7 +67,7 @@ export default {
   <div class="todo">
     <!-- current데이터를 TodoHeader 전달 -->
     <TodoHeader :current @update-tab="updateTab" />
-    <TodoList />
+    <TodoList :computed-todo="computedTodo" />
     <TodoInput @add-todo="addTodo" />
   </div>
 </template>
