@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
   // 허용할 HTTP 메서드 지정
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
   // 다음 미들웨어 또는 라우터로 이동
   next();
 });
