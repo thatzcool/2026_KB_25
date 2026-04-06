@@ -1,10 +1,14 @@
 <script>
 import { mapState } from 'pinia';
 import { useCountSetupStore } from '@/stores/countSetup';
-export default {
-  computed: {},
-  methods: {},
-};
+
+const setupStore = useCountSetupStore(); //셋업 스토어 객체로 인스턴스 생성
+
+console.log(setupStore.num);
+console.log(setupStore.doubleNum);
+console.log(setupStore.increment());
+setupStore.getJson('https://jsonplaceholder.typicode.com/posts');
+console.log(num, doubleNum);
 </script>
 <template>
   <h2>num: {{ num }}</h2>
