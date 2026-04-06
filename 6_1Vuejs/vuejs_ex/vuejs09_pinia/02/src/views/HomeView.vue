@@ -1,4 +1,11 @@
-<script></script>
+<script>
+import { mapState } from 'pinia';
+import { useCountSetupStore } from '@/stores/countSetup';
+export default {
+  computed: {},
+  methods: {},
+};
+</script>
 <template>
   <h2>num: {{ num }}</h2>
 
