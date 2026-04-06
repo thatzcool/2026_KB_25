@@ -297,7 +297,6 @@ CartView.vue ─┘
 - 컴포넌트 분리 (`ProductList`, `CartList`, `PriceSummary`)
 - API 통신 구조 추가
 
--
 
 이 프로젝트의 핵심은
 **“페이지는 나뉘어 있어도 상태는 하나로 공유할 수 있다”**는 점입니다.
