@@ -1,46 +1,56 @@
 <script setup>
 // AboutView.vue
-// <script setup> 문법에서 Pinia store를 직접 사용하는 예제입니다.
-// storeToRefs를 통해 state/getter를 반응성 손실 없이 구조 분해하여 템플릿에 연결합니다.
+// Composition API 방식에서 Pinia store를 직접 사용하는 예제입니다.
+// storeToRefs를 사용하면 state/getter를 구조 분해 할당해도 반응성이 유지됩니다.
 
-import { storeToRefs } from 'pinia'; // store의 state/getter를 ref로 안전하게 꺼내는 함수
-import { useCountOptionStore } from '@/stores/countOption'; // Option Store
-import { useCountSetupStore } from '@/stores/countSetup'; // Setup Store
+import { storeToRefs } from 'pinia';
+import { useCountOptionStore } from '@/stores/countOption';
+import { useCountSetupStore } from '@/stores/countSetup';
 
-const optionStore = useCountOptionStore(); // Option Store 인스턴스 생성
-const setupStore = useCountSetupStore(); // Setup Store 인스턴스 생성
+// store 인스턴스 생성
+const optionStore = useCountOptionStore();
+const setupStore = useCountSetupStore();
 
-// state/getter를 구조 분해할 때는 storeToRefs를 사용해야 반응성이 유지됩니다.
+// state/getter를 ref로 꺼내서 템플릿에서 반응형으로 사용
 const { num, doubleNum } = storeToRefs(optionStore);
 const { num: setupNum, doubleNum: setupDoubleNum } = storeToRefs(setupStore);
 
-// 액션은 ref가 아니므로 store 객체에서 직접 꺼내 쓰는 것이 일반적입니다.
-const { increment, getJSON } = optionStore;
-const { increment: setupIncrement, getJSON: setupGetJSON } = setupStore;
+// action은 store 객체에서 직접 호출합니다.
+function runOptionIncrement() {
+  optionStore.increment();
+}
 
-// 학습 확인용 콘솔 로그
-console.log(optionStore.num); // Option Store state 읽기 예시
-console.log(setupStore.doubleNum); // Setup Store getter 읽기 예시
+function runSetupIncrement() {
+  setupStore.increment();
+}
+
+async function loadData() {
+  await optionStore.getJSON('https://jsonplaceholder.typicode.com/posts');
+  await setupStore.getJSON('https://jsonplaceholder.typicode.com/posts');
+}
 </script>
 
 <template>
-  <!-- Option Store 값 출력 -->
-  <h2>Option Store num: {{ num }}</h2>
-  <h2>Option Store doubleNum: {{ doubleNum }}</h2>
+  <section>
+    <h1>About View</h1>
+    <p>Option Store num: {{ num }}</p>
+    <p>Option Store doubleNum: {{ doubleNum }}</p>
 
-  <!-- Setup Store 값 출력 -->
-  <h2>Setup Store num: {{ setupNum }}</h2>
-  <h2>Setup Store doubleNum: {{ setupDoubleNum }}</h2>
+    <p>Setup Store num: {{ setupNum }}</p>
+    <p>Setup Store doubleNum: {{ setupDoubleNum }}</p>
 
-  <!-- Option Store 액션 버튼 -->
-  <button @click="increment">Option increment</button>
-  <button @click="getJSON('https://jsonplaceholder.typicode.com/posts')">
-    Option getJSON
-  </button>
-
-  <!-- Setup Store 액션 버튼 -->
-  <button @click="setupIncrement">Setup increment</button>
-  <button @click="setupGetJSON('https://jsonplaceholder.typicode.com/posts')">
-    Setup getJSON
-  </button>
+    <div class="button-group">
+      <button @click="runOptionIncrement">Option Store 증가</button>
+      <button @click="runSetupIncrement">Setup Store 증가</button>
+      <button @click="loadData">두 Store API 호출</button>
+    </div>
+  </section>
 </template>
+
+<style scoped>
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+</style>

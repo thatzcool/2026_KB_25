@@ -1,21 +1,46 @@
 <script setup>
 // App.vue
-// 전체 화면의 공통 골격을 담당하는 최상위 컴포넌트입니다.
-// 상단에는 이동 메뉴를 두고, 아래에는 현재 라우트에 맞는 화면이 표시됩니다.
+// 최상위 레이아웃 컴포넌트입니다.
+// RouterLink는 메뉴 이동용 링크, RouterView는 현재 경로에 맞는 페이지가 렌더링되는 자리입니다.
 
-import { RouterLink, RouterView } from 'vue-router'; // 메뉴 링크와 현재 페이지 표시용 컴포넌트
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-  <!-- nav: 애플리케이션 공통 내비게이션 영역 -->
-  <nav>
-    <!-- RouterLink: 새로고침 없이 라우트 이동을 수행 -->
-    <RouterLink to="/">Home</RouterLink>
+  <div class="wrapper">
+    <h1>Vue Router + Pinia 예제</h1>
 
-    <!-- About 화면으로 이동하는 링크 -->
-    <RouterLink to="/about">About</RouterLink>
-  </nav>
+    <!-- 상단 메뉴 영역 -->
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
+    </nav>
 
-  <!-- RouterView: 현재 URL에 연결된 컴포넌트를 이 위치에 렌더링 -->
-  <RouterView />
+    <!-- 현재 주소(path)에 맞는 페이지 컴포넌트가 이 위치에 출력됩니다. -->
+    <RouterView />
+  </div>
 </template>
+
+<style scoped>
+.wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+a.router-link-active {
+  color: #42b883;
+}
+</style>
