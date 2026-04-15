@@ -3,11 +3,23 @@ package pratice_0415;
 public class IfElseExample {
     public static void main(String[] args) {
         int score = 85;
-       // intscore = 93
+
 
        //1. score가 85면 출력조건
        // 점수가90보다작습니다.
        // 등급은B입니다
+
+
+        if(score <= 90){
+            System.out.println("점수가 90보다 작습니다.");
+            System.out.println("등급은 B 입니다.");
+        }
+        System.out.println("=============================");
+        score = 93;
+        if(score > 90){
+            System.out.println("점수가 90보다 큽니다.");
+            System.out.println("등급은 A 입니다.");
+        }
 
 
 
