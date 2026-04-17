@@ -9,7 +9,7 @@ public class FourArithmetic_method {
         float f1 = 3.1254f;
 
         System.out.printf("안녕 printf()\n");
-        System.out.printf("인사말 : %s\n",str1);      //문자열 %s
+
         System.out.printf("a = %d , b = %d\n", a,b);   //정수 %d
         System.out.printf("f1 = %f\n",f1);    //실수
         System.out.printf("f1 = %.2f\n",f1);  // 실수 소숫점 처리
@@ -33,7 +33,8 @@ public class FourArithmetic_method {
         System.out.printf("총 금액 : %,d원\n", 1000000);
         System.out.printf("주문번호 : ORD-%05d\n", 7666);
 
-
+        String ack = printAction();
+        System.out.printf("exit code method : %s\n " , ack );
 
 
 //        for (int i = 1; i < 6; i++) {
@@ -45,7 +46,7 @@ public class FourArithmetic_method {
 
     }
 
-    public static void fourMethod(int a, int b){
+    public  void fourMethod(int a, int b){
         int result = 0;
         result = a + b;
         System.out.printf("a + b = %d\n", result);
@@ -65,4 +66,11 @@ public class FourArithmetic_method {
 
 
     }
+
+    public static String printAction(){
+        String str1 = "하이!";
+        System.out.printf("인사말 : %s\n",str1);      //문자열 %s
+        return "성공";
+    }
+
 }
