@@ -2,6 +2,7 @@
 //두개의 정수값을 더하여 결과값을 출력하는 자바 프로그램 작성
 package day01.section01;
 
+
 public class Calculator{
     public static void main(String[] args) {
         int number1;
@@ -20,5 +21,6 @@ public class Calculator{
         System.out.println(result);
 
     }
+
 
 }
